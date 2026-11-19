@@ -1,0 +1,327 @@
+/*
+ * Lifeboat Backup admin — Prasat Digital identity.
+ * Navy #0C1D3F with an indigo → teal accent (#818CF8 → #2DD4BF), Inter + Noto Sans Khmer.
+ * Corners: controls 6px, cards 10px, panels 12px; fully round only for dots, count badges,
+ * progress bars and switches. Flat: borders, no decorative shadows.
+ */
+
+@font-face { font-family: 'Lifeboat Inter'; font-style: normal; font-weight: 400; font-display: swap; src: url(fonts/inter-latin-400-normal.woff2) format('woff2'); }
+@font-face { font-family: 'Lifeboat Inter'; font-style: normal; font-weight: 600; font-display: swap; src: url(fonts/inter-latin-600-normal.woff2) format('woff2'); }
+@font-face { font-family: 'Lifeboat Inter'; font-style: normal; font-weight: 700; font-display: swap; src: url(fonts/inter-latin-700-normal.woff2) format('woff2'); }
+@font-face { font-family: 'Lifeboat Khmer'; font-style: normal; font-weight: 400; font-display: swap; src: url(fonts/noto-sans-khmer-khmer-400-normal.woff2) format('woff2'); unicode-range: U+1780-17FF, U+19E0-19FF, U+200C-200D, U+25CC; }
+@font-face { font-family: 'Lifeboat Khmer'; font-style: normal; font-weight: 600; font-display: swap; src: url(fonts/noto-sans-khmer-khmer-600-normal.woff2) format('woff2'); unicode-range: U+1780-17FF, U+19E0-19FF, U+200C-200D, U+25CC; }
+@font-face { font-family: 'Lifeboat Khmer'; font-style: normal; font-weight: 700; font-display: swap; src: url(fonts/noto-sans-khmer-khmer-700-normal.woff2) format('woff2'); unicode-range: U+1780-17FF, U+19E0-19FF, U+200C-200D, U+25CC; }
+
+.lifeboat,
+.lb-last {
+	--lb-navy: #0c1d3f;
+	--lb-indigo: #4f46e5;
+	--lb-indigo-dark: #4338ca;
+	--lb-indigo-soft: #eef2ff;
+	--lb-indigo-line: #c7d2fe;
+	--lb-grad: linear-gradient(135deg, #818cf8 0%, #2dd4bf 100%);
+	--lb-ok: #0f766e;
+	--lb-ok-bg: #f0fdfa;
+	--lb-ok-line: #99f6e4;
+	--lb-bad: #b91c1c;
+	--lb-bad-bg: #fef2f2;
+	--lb-bad-line: #fecaca;
+	--lb-warn: #b45309;
+	--lb-warn-bg: #fffbeb;
+	--lb-warn-line: #fde68a;
+	--lb-ink: #1c1917;
+	--lb-text: #44403c;
+	--lb-muted: #6b6560;
+	--lb-line: #e7e5e4;
+	--lb-line-strong: #d6d3d1;
+	--lb-soft: #f5f5f4;
+	--lb-r-control: 6px;
+	--lb-r-card: 10px;
+	--lb-r-panel: 12px;
+	--lb-font: 'Lifeboat Inter', 'Lifeboat Khmer', 'Inter', 'Noto Sans Khmer', system-ui, -apple-system, 'Segoe UI', sans-serif;
+}
+
+body.lb-body { background: #f5f5f4; }
+.lifeboat { max-width: 1200px; font-family: var(--lb-font); color: var(--lb-text); font-size: 14px; }
+html[lang^="km"] .lifeboat { line-height: 1.6; }
+.lifeboat h1, .lifeboat h2, .lifeboat h3, .lifeboat strong, .lifeboat legend { color: var(--lb-ink); font-family: var(--lb-font); }
+.lifeboat [hidden] { display: none !important; }
+.lifeboat a { color: var(--lb-indigo); }
+.lifeboat a:hover { color: var(--lb-indigo-dark); }
+.lifeboat a:focus, .lifeboat summary:focus { box-shadow: none; outline: 2px solid var(--lb-indigo); outline-offset: 2px; border-radius: 4px; }
+
+/* ------------------------------------------------------------------ brand header */
+.lb-brand {
+	position: relative; overflow: hidden; isolation: isolate;
+	display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap;
+	margin: 14px 0 12px; padding: 18px 22px;
+	background: var(--lb-navy); border-radius: var(--lb-r-panel); color: #fff;
+}
+.lb-brand::before, .lb-brand::after { content: ''; position: absolute; z-index: -1; border-radius: 50%; pointer-events: none; }
+.lb-brand::before { width: 360px; height: 360px; left: -130px; top: -200px; background: radial-gradient(closest-side, rgba(129, 140, 248, .5), rgba(129, 140, 248, 0)); }
+.lb-brand::after { width: 400px; height: 400px; right: -120px; bottom: -260px; background: radial-gradient(closest-side, rgba(45, 212, 191, .35), rgba(45, 212, 191, 0)); }
+.lb-brand__id { display: flex; align-items: center; gap: 12px; min-width: 0; }
+.lb-brand__mark { flex: none; width: 44px; height: 44px; border-radius: var(--lb-r-card); background: var(--lb-grad); display: grid; place-items: center; color: #fff; }
+.lb-brand__mark svg { width: 26px; height: 26px; display: block; }
+.lb-brand__mark--icon { width: 48px; height: 48px; border-radius: 11px; background: none; overflow: hidden; box-shadow: 0 0 0 1px rgba(255, 255, 255, .16), 0 6px 16px rgba(0, 0, 0, .28); }
+.lb-brand__mark--icon img { width: 100%; height: 100%; display: block; }
+#wpfooter .pd-foot-credit em { font-style: italic; }
+#wpfooter .pd-foot-credit a { color: inherit; font-weight: 600; }
+.lifeboat .lb-brand h1 { margin: 0; padding: 0; font-size: 20px; font-weight: 700; line-height: 1.2; color: #fff; }
+.lb-brand__tag { margin: 3px 0 0; font-size: 11px; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; background: linear-gradient(90deg, #a5b4fc, #5eead4); -webkit-background-clip: text; background-clip: text; color: transparent; }
+.lifeboat .lb-brand__status { display: inline-flex; align-items: center; gap: 8px; padding: 8px 12px; border: 1px solid rgba(255, 255, 255, .18); border-radius: var(--lb-r-control); background: rgba(255, 255, 255, .06); font-size: 13px; font-weight: 600; color: #fff; text-decoration: none; }
+.lifeboat .lb-brand__status:hover { color: #fff; background: rgba(255, 255, 255, .1); }
+.lb-brand__status small { font-weight: 400; color: rgba(255, 255, 255, .65); font-size: 12px; }
+/* Right side of the header: status pill + maker's credit (same look as the Prasat POS credit badge). */
+.lb-brand__side { display: flex; align-items: center; gap: 6px 10px; flex-wrap: wrap; justify-content: flex-end; }
+.lifeboat .lb-credit { display: inline-flex; align-items: center; gap: 8px; padding: 6px 8px; border-radius: var(--lb-r-control); color: rgba(255, 255, 255, .6); font-size: 12px; text-decoration: none; white-space: nowrap; }
+.lifeboat .lb-credit:hover, .lifeboat .lb-credit:focus { background: rgba(255, 255, 255, .1); color: rgba(255, 255, 255, .8); }
+.lb-credit img { width: 20px; height: 20px; flex: none; }
+.lb-credit b { color: #fff; font-weight: 600; text-decoration: underline; text-decoration-color: rgba(255, 255, 255, .4); text-decoration-thickness: 1px; text-underline-offset: 2px; }
+@media (max-width: 600px) { .lb-brand__side { justify-content: flex-start; } }
+.lb-dot { flex: none; width: 8px; height: 8px; border-radius: 50%; background: #5eead4; }
+.lb-dot--partial { background: #fbbf24; }
+.lb-dot--failed { background: #f87171; }
+.lb-dot--none { background: #a8a29e; }
+
+/* Tabs: Prasat chips; the active one is filled navy. */
+.lb-tabs { display: flex; gap: 8px; flex-wrap: wrap; margin: 0 0 18px; }
+.lifeboat .lb-tabs a { display: inline-flex; align-items: center; min-height: 38px; padding: 0 14px; border: 1px solid var(--lb-line); border-radius: var(--lb-r-control); background: #fff; color: var(--lb-text); font-weight: 600; text-decoration: none; white-space: nowrap; }
+.lifeboat .lb-tabs a:hover { border-color: var(--lb-line-strong); color: var(--lb-ink); }
+.lifeboat .lb-tabs a.is-active { background: var(--lb-navy); border-color: var(--lb-navy); color: #fff; }
+
+/* ------------------------------------------------------------------ layout */
+.lb-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; margin-bottom: 16px; align-items: start; }
+@media (max-width: 1000px) { .lb-grid { grid-template-columns: minmax(0, 1fr); } }
+.lb-card { background: #fff; border: 1px solid var(--lb-line); border-radius: var(--lb-r-card); padding: 20px 22px; margin-bottom: 16px; }
+.lb-grid .lb-card { margin-bottom: 0; }
+.lifeboat .lb-card h2 { font-size: 16px; font-weight: 700; margin: 0 0 14px; }
+.lifeboat .lb-card h2.lb-sub { margin-top: 22px; padding-top: 18px; border-top: 1px solid var(--lb-line); }
+.lb-muted, .lifeboat .description { color: var(--lb-muted); }
+.lifeboat .description { font-size: 13px; margin-top: 6px; }
+.lb-empty { color: var(--lb-muted); padding: 12px 0; margin: 0; }
+.lb-intro { max-width: 760px; font-size: 14px; color: var(--lb-text); }
+
+/* ------------------------------------------------------------------ controls */
+.lifeboat .button {
+	display: inline-flex; align-items: center; justify-content: center; gap: 6px;
+	min-height: 36px; padding: 0 14px; line-height: 1.2; vertical-align: middle;
+	border: 1px solid var(--lb-line-strong); border-radius: var(--lb-r-control);
+	background: #fff; color: var(--lb-ink); font-family: var(--lb-font); font-weight: 600; font-size: 13px;
+	box-shadow: none; text-shadow: none; transition: background .12s, border-color .12s, transform .12s;
+}
+.lifeboat .button:hover { background: var(--lb-soft); border-color: var(--lb-line-strong); color: var(--lb-ink); }
+.lifeboat .button:active { transform: scale(.98); }
+.lifeboat .button:focus { box-shadow: 0 0 0 3px rgba(79, 70, 229, .25); border-color: var(--lb-indigo); outline: none; }
+.lifeboat .button-primary { background: var(--lb-indigo); border-color: var(--lb-indigo); color: #fff; }
+.lifeboat .button-primary:hover, .lifeboat .button-primary:focus { background: var(--lb-indigo-dark); border-color: var(--lb-indigo-dark); color: #fff; }
+.lifeboat .button-primary[disabled], .lifeboat .button[disabled] { background: var(--lb-soft) !important; border-color: var(--lb-line) !important; color: #a8a29e !important; }
+.lifeboat .button.button-hero { min-height: 46px; padding: 0 22px; font-size: 15px; }
+.lifeboat .button.button-large { min-height: 42px; padding: 0 18px; font-size: 14px; }
+.lifeboat .button.button-small { min-height: 30px; padding: 0 10px; font-size: 12px; }
+.lifeboat .button.button-link-delete { color: var(--lb-bad); border-color: var(--lb-bad-line); background: #fff; }
+.lifeboat .button.button-link-delete:hover { background: var(--lb-bad-bg); color: var(--lb-bad); border-color: var(--lb-bad-line); }
+
+.lifeboat input[type="text"], .lifeboat input[type="email"], .lifeboat input[type="password"], .lifeboat input[type="url"], .lifeboat input[type="number"], .lifeboat select, .lifeboat textarea {
+	min-height: 36px; padding: 6px 10px; border: 1px solid var(--lb-line-strong); border-radius: var(--lb-r-control);
+	background-color: #fff; color: var(--lb-ink); font-family: var(--lb-font); font-size: 14px; box-shadow: none;
+}
+.lifeboat select { padding-right: 28px; }
+.lifeboat textarea.code, .lifeboat input.code { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 13px; }
+.lifeboat input:focus, .lifeboat select:focus, .lifeboat textarea:focus { border-color: var(--lb-indigo); box-shadow: 0 0 0 3px rgba(79, 70, 229, .2); outline: none; }
+.lifeboat input[readonly] { background: var(--lb-soft); }
+.lifeboat input[type="checkbox"], .lifeboat input[type="radio"] { border-color: #a8a29e; box-shadow: none; }
+.lifeboat input[type="checkbox"] { border-radius: 4px; }
+.lifeboat input[type="checkbox"]:checked { background: var(--lb-indigo); border-color: var(--lb-indigo); }
+.lifeboat input[type="checkbox"]:checked::before { content: ''; width: 100%; height: 100%; margin: 0; background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M3.5 8.5l3 3 6-7' fill='none' stroke='%23fff' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center / 100% no-repeat; }
+.lifeboat input[type="radio"]:checked { border-color: var(--lb-indigo); background: #fff; }
+.lifeboat input[type="radio"]:checked::before { background-color: var(--lb-indigo); }
+.lifeboat input[type="checkbox"]:focus, .lifeboat input[type="radio"]:focus { box-shadow: 0 0 0 3px rgba(79, 70, 229, .25); border-color: var(--lb-indigo); }
+
+/* ------------------------------------------------------------------ last backup status */
+.lb-last { display: flex; gap: 10px; align-items: flex-start; padding: 12px 14px; border: 1px solid var(--lb-line); border-radius: var(--lb-r-card); margin: 0 0 14px; font-family: var(--lb-font); background: var(--lb-soft); color: var(--lb-text); }
+.lb-last strong { display: block; color: inherit; font-weight: 600; }
+.lb-last__icon { flex: none; width: 22px; height: 22px; border-radius: 50%; display: grid; place-items: center; font-weight: 700; font-size: 12px; color: #fff; background: #a8a29e; }
+.lb-last__detail { color: inherit; }
+.lb-last--ok { background: var(--lb-ok-bg); border-color: var(--lb-ok-line); color: var(--lb-ok); }
+.lb-last--ok .lb-last__icon { background: var(--lb-ok); }
+.lb-last--partial { background: var(--lb-warn-bg); border-color: var(--lb-warn-line); color: var(--lb-warn); }
+.lb-last--partial .lb-last__icon { background: #d97706; }
+.lb-last--failed { background: var(--lb-bad-bg); border-color: var(--lb-bad-line); color: var(--lb-bad); }
+.lb-last--failed .lb-last__icon { background: var(--lb-bad); }
+
+/* ------------------------------------------------------------------ back up now */
+.lifeboat .lb-hero h2 { font-size: 18px; }
+.lb-backup-form fieldset { border: 0; padding: 0; margin: 0 0 18px; display: flex; flex-wrap: wrap; gap: 8px 18px; }
+.lb-backup-form legend, .lb-dialog legend { font-size: 11px; font-weight: 600; letter-spacing: .07em; text-transform: uppercase; color: var(--lb-muted); margin-bottom: 8px; width: 100%; padding: 0; }
+.lb-backup-form label, .lb-dialog fieldset label { display: inline-flex; align-items: center; gap: 6px; }
+.lb-modes { gap: 10px !important; }
+.lifeboat .lb-mode { flex: 1 1 180px; border: 1px solid var(--lb-line); border-radius: var(--lb-r-control); padding: 12px 14px; display: flex; gap: 10px; align-items: flex-start; cursor: pointer; background: #fff; }
+.lb-mode:hover { border-color: var(--lb-line-strong); }
+.lifeboat .lb-mode:has(input:checked) { border-color: var(--lb-indigo); background: var(--lb-indigo-soft); }
+.lb-mode input { margin-top: 2px !important; }
+.lb-mode span { display: flex; flex-direction: column; gap: 2px; }
+.lb-mode small { color: var(--lb-muted); font-size: 12px; }
+
+/* ------------------------------------------------------------------ job card */
+.lb-job__head { display: flex; justify-content: space-between; align-items: center; gap: 12px; }
+.lifeboat .lb-job__head h2 { margin: 0; }
+.lb-job__head .lb-job__title { flex: 1; }
+.lb-job__icon { flex: none; width: 32px; height: 32px; border-radius: 50%; display: grid; place-items: center; font-weight: 700; font-size: 16px; color: #fff; background: var(--lb-muted); }
+.lb-progress { height: 8px; background: var(--lb-soft); border-radius: 999px; overflow: hidden; margin: 18px 0 10px; }
+.lb-progress span { display: block; height: 100%; width: 0; background: var(--lb-grad); border-radius: 999px; transition: width .5s ease; }
+.lb-job__msg { margin: 0 0 4px; font-size: 14px; }
+.lb-job__hint { font-size: 13px; }
+.lb-job__warnings { margin: 8px 0 0 18px; list-style: disc; color: var(--lb-warn); }
+.lifeboat .lb-job.is-done { border-color: var(--lb-ok-line); background: var(--lb-ok-bg); }
+.lb-job.is-done .lb-job__icon { background: var(--lb-ok); }
+.lifeboat .lb-job.is-done .lb-job__title { color: var(--lb-ok); }
+.lb-job.is-done .lb-progress span { background: var(--lb-ok); }
+.lifeboat .lb-job.is-partial { border-color: var(--lb-warn-line); background: var(--lb-warn-bg); }
+.lb-job.is-partial .lb-job__icon { background: #d97706; }
+.lifeboat .lb-job.is-partial .lb-job__title { color: var(--lb-warn); }
+.lifeboat .lb-job.is-failed { border-color: var(--lb-bad-line); background: var(--lb-bad-bg); }
+.lb-job.is-failed .lb-job__icon { background: var(--lb-bad); }
+.lifeboat .lb-job.is-failed .lb-job__title, .lb-job.is-failed .lb-job__msg { color: var(--lb-bad); }
+.lb-job.is-failed .lb-job__msg { font-weight: 600; }
+.lb-job.is-failed .lb-progress span { background: var(--lb-bad); }
+.lifeboat .button-link.lb-job__dismiss { min-height: 0; padding: 0 4px; border: 0; background: none; font-size: 22px; line-height: 1; color: var(--lb-muted); text-decoration: none; }
+.lb-facts { display: grid; grid-template-columns: max-content 1fr; gap: 6px 18px; margin: 14px 0 12px; }
+.lb-facts dt { color: var(--lb-muted); }
+.lb-facts dd { margin: 0; font-weight: 600; color: var(--lb-ink); }
+.lb-places { margin: 0; list-style: none; display: grid; gap: 6px; }
+.lb-places li { margin: 0; }
+.lb-tick { display: inline-grid; place-items: center; width: 18px; height: 18px; border-radius: 50%; background: var(--lb-ok); color: #fff; font-size: 11px; font-weight: 700; margin-right: 4px; vertical-align: -3px; }
+.lb-places .is-bad .lb-tick, .lb-place.is-bad .lb-tick { background: var(--lb-bad); }
+.lb-places .is-bad { color: var(--lb-bad); cursor: help; }
+@media (prefers-reduced-motion: reduce) { .lb-progress span, .lifeboat .button { transition: none; } }
+@media (max-width: 600px) { .lb-facts { grid-template-columns: 1fr; } .lb-facts dd { margin-bottom: 6px; } }
+
+/* ------------------------------------------------------------------ backups table */
+.lb-table-wrap { overflow-x: auto; }
+.lb-table { width: 100%; border-collapse: collapse; font-variant-numeric: tabular-nums; }
+.lb-table th { text-align: left; font-size: 11px; font-weight: 600; letter-spacing: .07em; text-transform: uppercase; color: var(--lb-muted); padding: 8px 10px; border-bottom: 1px solid var(--lb-line); }
+.lb-table td { padding: 14px 10px; border-bottom: 1px solid var(--lb-soft); vertical-align: top; }
+.lb-table tbody tr:hover td { background: #fafaf9; }
+.lb-table td strong { font-weight: 600; }
+.lb-actions { text-align: right; white-space: nowrap; }
+.lb-actions > * { vertical-align: top; margin-left: 4px; }
+.lb-chip { display: inline-block; background: var(--lb-soft); border: 1px solid var(--lb-line); border-radius: 4px; padding: 1px 7px; margin: 0 4px 4px 0; font-size: 12px; color: var(--lb-text); }
+.lb-badge { display: inline-flex; align-items: center; gap: 3px; white-space: nowrap; border-radius: 4px; padding: 1px 7px; font-size: 11px; font-weight: 600; background: var(--lb-soft); color: var(--lb-muted); margin-top: 5px; line-height: 18px; }
+.lb-badge--update { background: var(--lb-indigo-soft, #eef2ff); color: #4338ca; }
+.lb-badge--schedule, .lb-badge--schedule-db { background: var(--lb-indigo-soft); color: var(--lb-indigo-dark); }
+.lb-badge--ok { background: var(--lb-ok-bg); color: var(--lb-ok); }
+.lb-badge--warn { background: var(--lb-warn-bg); color: var(--lb-warn); }
+.lb-badge--bad { background: var(--lb-bad-bg); color: var(--lb-bad); }
+.lb-badge--enc { background: var(--lb-navy); color: #fff; }
+.lb-badge .dashicons { font-size: 12px; width: 12px; height: 12px; line-height: 12px; }
+.lb-where { display: flex; flex-direction: column; gap: 6px; }
+.lb-place { white-space: nowrap; }
+.lb-place.is-bad { color: var(--lb-bad); }
+.lb-dl { display: inline-block; position: relative; }
+.lb-dl summary { list-style: none; }
+.lb-dl summary::-webkit-details-marker { display: none; }
+.lb-dl > div { position: absolute; right: 0; z-index: 10; margin-top: 4px; background: #fff; border: 1px solid var(--lb-line); border-radius: var(--lb-r-card); box-shadow: none; padding: 6px; min-width: 260px; text-align: left; }
+.lifeboat .lb-dl a { display: flex; justify-content: space-between; gap: 12px; padding: 7px 9px; border-radius: var(--lb-r-control); text-decoration: none; color: var(--lb-ink); }
+.lb-dl a:hover { background: var(--lb-soft); }
+.lb-dl a small { color: var(--lb-muted); }
+
+/* ------------------------------------------------------------------ dialog */
+.lb-dialog { border: 1px solid var(--lb-line); border-radius: var(--lb-r-panel); padding: 24px; width: min(540px, calc(100vw - 32px)); box-shadow: none; font-family: var(--lb-font); color: var(--lb-text); }
+.lb-dialog::backdrop { background: rgba(12, 29, 63, .55); }
+.lb-dialog h2 { margin-top: 0; font-size: 18px; color: var(--lb-ink); }
+.lb-dialog fieldset { border: 0; padding: 0; margin: 0 0 16px; display: flex; flex-wrap: wrap; gap: 8px 18px; }
+.lb-dialog__actions { display: flex; justify-content: flex-end; gap: 8px; margin-bottom: 0; }
+.lb-keep { display: flex; gap: 8px; align-items: flex-start; margin-bottom: 10px; }
+.lb-password { display: grid; gap: 6px; margin-bottom: 14px; padding: 12px 14px; border: 1px solid var(--lb-indigo-line); border-radius: var(--lb-r-card); background: var(--lb-indigo-soft); }
+.lb-password[hidden] { display: none; }
+
+/* ------------------------------------------------------------------ settings */
+.lb-field { margin-bottom: 20px; }
+.lb-field > label:first-child, .lb-label { display: block; font-weight: 600; color: var(--lb-ink); margin-bottom: 6px; }
+.lb-inline { display: flex; flex-wrap: wrap; gap: 8px 14px; align-items: center; }
+.lb-checks { display: flex; flex-wrap: wrap; gap: 8px 18px; }
+.lb-checks label { display: inline-flex; align-items: center; gap: 6px; }
+.lb-check { display: inline-flex; gap: 8px; align-items: center; }
+.lb-mode-explain { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 18px; }
+.lb-mode-explain > div { background: var(--lb-soft); border: 1px solid var(--lb-line); border-radius: var(--lb-r-card); padding: 12px 14px; }
+.lb-mode-explain p { margin: 4px 0 0; color: var(--lb-muted); font-size: 13px; }
+.lb-advanced summary { cursor: pointer; list-style: none; display: flex; align-items: center; gap: 10px; }
+.lb-advanced summary::-webkit-details-marker { display: none; }
+.lb-advanced summary::before { content: ''; width: 7px; height: 7px; border-right: 2px solid var(--lb-muted); border-bottom: 2px solid var(--lb-muted); transform: rotate(-45deg); transition: transform .15s; }
+.lb-advanced[open] summary::before { transform: rotate(45deg); }
+.lifeboat .lb-advanced summary h2 { display: inline; margin: 0; }
+.lb-advanced[open] summary { margin-bottom: 16px; }
+
+.lifeboat .lb-encryption h2 { display: flex; align-items: center; gap: 8px; }
+.lb-encryption h2 .dashicons { color: var(--lb-indigo); }
+.lb-encryption h2 .lb-badge { margin-top: 0; }
+.lb-encryption > p { max-width: 760px; }
+.lb-enc-form { max-width: 460px; }
+.lb-warn { background: var(--lb-warn-bg); border: 1px solid var(--lb-warn-line); color: var(--lb-warn); border-radius: var(--lb-r-control); padding: 9px 12px; margin: 0; font-size: 13px; }
+
+/* ------------------------------------------------------------------ storage */
+.lb-dests { display: grid; grid-template-columns: repeat(auto-fill, minmax(340px, 1fr)); gap: 16px; align-items: start; }
+.lb-dest { margin: 0; }
+.lifeboat .lb-dest.is-connected { border-color: var(--lb-ok-line); }
+.lb-dest__head { display: flex; align-items: center; gap: 10px; margin-bottom: 12px; }
+.lifeboat .lb-dest__head h2 { margin: 0; flex: 1; }
+.lb-dest__head .lb-badge { margin-top: 0; }
+.lb-dest__logo { width: 36px; height: 36px; border-radius: var(--lb-r-control); display: grid; place-items: center; color: #fff; font-weight: 700; font-size: 15px; background: #57534e; }
+.lb-dest--gdrive .lb-dest__logo { background: #1a73e8; }
+.lb-dest--onedrive .lb-dest__logo { background: #0364b8; }
+.lb-dest--dropbox .lb-dest__logo { background: #0061fe; }
+.lb-dest--box .lb-dest__logo { background: #0061d5; }
+.lb-dest--mega .lb-dest__logo { background: #d90007; }
+.lb-dest__status { color: var(--lb-muted); min-height: 1.4em; }
+.lb-dest__status.is-error { color: var(--lb-bad); }
+.lb-dest__form { display: grid; gap: 12px; margin: 12px 0; }
+.lb-dest__form label { display: grid; gap: 5px; font-weight: 600; color: var(--lb-ink); }
+.lb-dest__form label.lb-check { display: flex; font-weight: 400; color: var(--lb-text); }
+.lb-dest__form .button { justify-self: start; }
+.lb-setup { margin: 4px 0 12px; }
+.lb-setup summary { cursor: pointer; color: var(--lb-indigo); font-weight: 600; }
+.lb-setup ol { margin: 10px 0 10px 20px; }
+.lb-setup li { margin-bottom: 4px; }
+.lb-copy { display: flex; gap: 6px; }
+.lb-notes { margin: 0 0 10px 18px; list-style: disc; color: var(--lb-muted); }
+@media (max-width: 600px) {
+	.lb-mode-explain { grid-template-columns: 1fr; }
+	.lb-dests { grid-template-columns: 1fr; }
+	.lb-brand { padding: 16px; }
+	.lb-card { padding: 16px; }
+}
+
+/* ------------------------------------------------------------------ choice chips
+ * Multi-choice lists (what to back up, where to send it, what to restore) are Prasat chips:
+ * a bordered 6px control with a small check box; selected = indigo outline on a soft tint.
+ * The real checkbox stays in the label (keyboard and screen readers), just invisible. */
+.lb-backup-form fieldset:not(.lb-modes), .lb-checks, .lb-dialog fieldset { gap: 8px !important; }
+.lifeboat .lb-pick { position: relative; display: inline-flex; margin: 0; cursor: pointer; }
+.lifeboat .lb-pick input[type="checkbox"], .lifeboat .lb-pick input[type="radio"] { position: absolute; inset: 0; width: 100%; height: 100%; min-width: 0; margin: 0; opacity: 0; cursor: pointer; z-index: 1; }
+.lb-pick span { display: inline-flex; align-items: center; gap: 8px; min-height: 38px; padding: 0 14px 0 11px; border: 1px solid var(--lb-line); border-radius: var(--lb-r-control); background: #fff; color: var(--lb-text); font-size: 13px; font-weight: 600; line-height: 1.2; white-space: nowrap; transition: border-color .12s, background-color .12s, color .12s; }
+.lb-pick span::before { content: ''; flex: none; box-sizing: border-box; width: 16px; height: 16px; border: 1.5px solid #a8a29e; border-radius: 4px; background: #fff center / 12px 12px no-repeat; transition: background-color .12s, border-color .12s; }
+.lb-pick input[type="radio"] + span::before { border-radius: 50%; }
+.lb-pick:hover span { border-color: var(--lb-line-strong); color: var(--lb-ink); }
+.lb-pick input:checked + span { border-color: var(--lb-indigo); background: var(--lb-indigo-soft); color: var(--lb-indigo-dark); }
+.lb-pick input[type="checkbox"]:checked + span::before { border-color: var(--lb-indigo); background-color: var(--lb-indigo); background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M3.5 8.5l3 3 6-7' fill='none' stroke='%23fff' stroke-width='2.4' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E"); }
+.lb-pick input[type="radio"]:checked + span::before { border-color: var(--lb-indigo); background: var(--lb-indigo); box-shadow: inset 0 0 0 3px #fff; }
+.lb-pick input:focus-visible + span { border-color: var(--lb-indigo); box-shadow: 0 0 0 3px rgba(79, 70, 229, .25); }
+.lb-pick input:disabled + span { opacity: .5; }
+@media (hover: none) { .lb-pick span { min-height: 42px; padding: 0 16px 0 13px; } }
+@media (prefers-reduced-motion: reduce) { .lb-pick span, .lb-pick span::before { transition: none; } }
+
+/* Remaining single checkboxes and radios: keep them small and neat at every screen size
+   (WordPress enlarges them to 25px on phones). */
+.lifeboat input[type="checkbox"], .lifeboat input[type="radio"] { width: 18px; height: 18px; min-width: 18px; margin: 0; }
+.lifeboat input[type="radio"]:checked::before { width: 8px; height: 8px; margin: 4px; }
+.lb-dialog input[type="checkbox"] { flex: none; margin-top: 2px; }
+
+/* Polish pass */
+.lb-job.is-cancelled { border-color: var(--lb-line); background: #fff; }
+.lb-job.is-cancelled .lb-job__icon { background: var(--lb-muted); }
+.lifeboat .lifeboat-enabled-save { margin-left: 6px; }
+.lifeboat a:focus-visible, .lifeboat summary:focus-visible, .lifeboat button:focus-visible { outline: 2px solid #4f46e5; outline-offset: 2px; }
+.lifeboat .lb-pick input:focus-visible + span, .lifeboat .lb-mode:has(input:focus-visible) { outline: 2px solid #4f46e5; outline-offset: 2px; }
+@media (prefers-reduced-motion: reduce) { .lifeboat *, .lifeboat *::before, .lifeboat *::after { transition: none !important; animation: none !important; } }
+.lifeboat .lb-save { position: sticky; bottom: 0; z-index: 5; margin: 16px -2px 0; padding: 12px 2px; background: #f5f5f4; border-top: 1px solid var(--lb-line); }

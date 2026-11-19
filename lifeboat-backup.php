@@ -2,10 +2,10 @@
 /**
  * Plugin Name:       Lifeboat Backup
  * Description:       Automatic backups to Google Drive, OneDrive, Dropbox, Box and MEGA. Daily, weekly or monthly schedules, automatic backup after updates, optional AES-256 encryption, and a background engine with Easy mode (gentle on your site) or Rush mode (as fast as possible).
- * Version:           1.0.4
+ * Version:           1.0.5
  * Requires at least: 6.0
  * Requires PHP:      7.4
- * Update URI:        https://www.prasatdigital.com/plugins/lifeboat-backup/
+ * Update URI:        https://github.com/thhyarith-prog/lifeboat-backup
  * Author:            Prasat Digital
  * Author URI:        https://www.prasatdigital.com
  * License:           GPL-2.0-or-later
@@ -17,10 +17,14 @@
 
 defined( 'ABSPATH' ) || exit;
 
-define( 'LIFEBOAT_VERSION', '1.0.4' );
+define( 'LIFEBOAT_VERSION', '1.0.5' );
 define( 'LIFEBOAT_FILE', __FILE__ );
 define( 'LIFEBOAT_DIR', plugin_dir_path( __FILE__ ) );
 define( 'LIFEBOAT_URL', plugin_dir_url( __FILE__ ) );
+
+// Updates come from the GitHub releases of this plugin.
+require_once LIFEBOAT_DIR . 'includes/prasat-updater.php';
+Prasat_Updater::register( __FILE__, 'thhyarith-prog/lifeboat-backup' );
 
 /*
  * Publisher setting: address of your sign-in relay (see the lifeboat-relay project).

@@ -4,7 +4,7 @@
 
 <p align="center">Automatic WordPress backups to Google Drive, OneDrive, Dropbox, Box and MEGA, with schedules, backups after updates, password encryption, and one-click restore.</p>
 
-<p align="center">Version 1.0.4 · WordPress 6.0+ · PHP 7.4+ · GPL-2.0-or-later · by <a href="https://www.prasatdigital.com">Prasat Digital</a></p>
+<p align="center">Version 1.0.5 · WordPress 6.0+ · PHP 7.4+ · GPL-2.0-or-later · by <a href="https://www.prasatdigital.com">Prasat Digital</a></p>
 
 ---
 

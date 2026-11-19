@@ -3,7 +3,7 @@ Tags: backup, google drive, onedrive, dropbox, encryption
 Requires at least: 6.0
 Tested up to: 7.1
 Requires PHP: 7.4
-Stable tag: 1.0.5
+Stable tag: 1.0.6
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -78,6 +78,11 @@ Yes, on purpose. It trades speed for keeping your site responsive. Use Rush for 
 * Interface fonts: Inter (The Inter Project Authors) and Noto Sans Khmer (Google), both under the SIL Open Font License 1.1. They are bundled in `assets/fonts`, so the admin screens never load fonts from another server.
 
 == Changelog ==
+
+= 1.0.6 =
+* New: the Prasat Digital overview is now a full dashboard: website health with a severity breakdown, "What to fix first", live tiles for every plugin, recent activity, 7-day charts and the Smart AI Optimize (Premium) card.
+* New: Prasat temple loading animations for checks, scans, backups and every progress bar.
+* New: last backup, storage and running backups appear on the Prasat Digital dashboard.
 
 = 1.0.5 =
 * New: updates now come from the plugin's GitHub releases (github.com/thhyarith-prog), with the normal one-click "Update now" and automatic updates.

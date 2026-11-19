@@ -761,4 +761,41 @@ class Lifeboat_Admin {
 		}
 		return $out;
 	}
+
+	/** Numbers for the Prasat Digital dashboard (Prasat_Hub::render). */
+	public static function dashboard() {
+		list( $status, , , $ago ) = self::last_backup_info();
+		$last  = get_option( 'lifeboat_last_backup' );
+		$where = ! empty( $last['where'] ) ? implode( ', ', (array) $last['where'] ) : __( 'this server', 'lifeboat-backup' );
+		$next  = wp_next_scheduled( Lifeboat_Scheduler::DB );
+		$full  = wp_next_scheduled( Lifeboat_Scheduler::FULL );
+		$next  = $next && $full ? min( $next, $full ) : ( $next ? $next : $full );
+		$out   = array( 'tiles' => array(), 'activity' => array(), 'charts' => array(), 'jobs' => array() );
+		$out['tiles'][] = array(
+			'area'  => __( 'Backups', 'lifeboat-backup' ),
+			'value' => 'none' === $status ? __( 'None', 'lifeboat-backup' ) : $ago,
+			'label' => 'none' === $status ? __( 'no backup yet', 'lifeboat-backup' ) : ( 'failed' === $status ? __( 'since a failed backup', 'lifeboat-backup' ) : __( 'since last backup', 'lifeboat-backup' ) ),
+			'sub'   => ( 'none' === $status ? '' : $where ) . ( $next ? ( 'none' === $status ? '' : ' · ' ) . sprintf( __( 'next %s', 'lifeboat-backup' ), wp_date( 'D H:i', $next ) ) : '' ),
+			'tone'  => Lifeboat_Vault::needs_password() || in_array( $status, array( 'failed', 'none' ), true ) ? 'bad' : ( 'partial' === $status ? 'warn' : 'ok' ),
+			'url'   => self::url(),
+		);
+		if ( ! empty( $last['time'] ) ) {
+			$out['activity'][] = array(
+				'time' => (int) $last['time'],
+				'text' => 'ok' === $status ? sprintf( __( 'Backup finished · stored on %s', 'lifeboat-backup' ), $where ) : ( 'failed' === $status ? __( 'Backup failed', 'lifeboat-backup' ) : __( 'Backup reached only some places', 'lifeboat-backup' ) ),
+				'tone' => 'ok' === $status ? 'ok' : 'bad',
+				'url'  => self::url(),
+			);
+		}
+		$job = Lifeboat_Runner::job();
+		if ( Lifeboat_Runner::is_active( $job ) ) {
+			$out['jobs'][] = array(
+				'title'   => 'restore' === $job['type'] ? __( 'Restore running', 'lifeboat-backup' ) : __( 'Backup running', 'lifeboat-backup' ),
+				'percent' => isset( $job['percent'] ) ? (int) $job['percent'] : 0,
+				'text'    => isset( $job['message'] ) ? $job['message'] : '',
+				'url'     => self::url(),
+			);
+		}
+		return $out;
+	}
 }

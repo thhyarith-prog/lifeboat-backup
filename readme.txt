@@ -3,7 +3,7 @@ Tags: backup, google drive, onedrive, dropbox, encryption
 Requires at least: 6.0
 Tested up to: 7.1
 Requires PHP: 7.4
-Stable tag: 1.0.7
+Stable tag: 1.0.8
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -78,6 +78,10 @@ Yes, on purpose. It trades speed for keeping your site responsive. Use Rush for 
 * Interface fonts: Inter (The Inter Project Authors) and Noto Sans Khmer (Google), both under the SIL Open Font License 1.1. They are bundled in `assets/fonts`, so the admin screens never load fonts from another server.
 
 == Changelog ==
+
+= 1.0.8 =
+* Improved: the "Optimize with AI" button has a new Prasat temple design that builds up while your plan is being written and shows a tick when it is ready.
+* Improved: the plan now says which AI wrote it.
 
 = 1.0.7 =
 * New: Smart AI Optimize (Prasat Premium). Add your Premium key on the Prasat Digital dashboard, then "Optimize with AI" runs a fresh check and Claude writes a step-by-step plan for your site, with a button to each fix. Only scores and check titles are sent: no user names, emails, IP addresses or site address.

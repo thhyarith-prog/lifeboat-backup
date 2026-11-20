@@ -347,9 +347,41 @@ class Lifeboat_Admin {
 		);
 	}
 
+	/* ================================================ Smart AI Optimize */
+
+	/**
+	 * For Prasat_Hub: a database backup before Smart AI Optimize changes anything. If a backup is
+	 * already running, the dashboard waits for that one instead (it is just as fresh).
+	 */
+	public static function hub_backup_start() {
+		$job = Lifeboat_Runner::job();
+		if ( Lifeboat_Runner::is_active( $job ) ) {
+			return array( 'status' => 'running', 'id' => $job['id'], 'percent' => (int) $job['percent'], 'message' => $job['message'] );
+		}
+		$job = Lifeboat_Runner::start( Lifeboat_Backup::create_job( 'ai-optimize', 'rush', array( 'db' ), array() ) );
+		if ( is_wp_error( $job ) ) {
+			return array( 'status' => 'failed', 'message' => $job->get_error_message() );
+		}
+		return array( 'status' => 'running', 'id' => $job['id'], 'percent' => (int) $job['percent'], 'message' => $job['message'] );
+	}
+
+	public static function hub_backup_status( $id ) {
+		$job = Lifeboat_Runner::job();
+		if ( ! is_array( $job ) || $job['id'] !== $id ) {
+			return array( 'status' => Lifeboat_History::get( $id ) ? 'done' : 'failed', 'id' => $id );
+		}
+		// The open dashboard keeps the job moving on hosts that block loopback requests.
+		if ( Lifeboat_Runner::is_active( $job ) && $job['updated'] < time() - 12 && ( empty( $job['retry_at'] ) || $job['retry_at'] <= time() ) ) {
+			$job = Lifeboat_Runner::run( min( 15, Lifeboat_Runner::BUDGET[ $job['mode'] ] ) );
+		}
+		$status = 'done' === $job['status'] ? 'done' : ( 'running' === $job['status'] ? 'running' : 'failed' );
+		return array( 'status' => $status, 'id' => $id, 'percent' => (int) $job['percent'], 'message' => $job['message'] );
+	}
+
 	public static function trigger_label( $t ) {
 		$l = array(
 			'manual'      => __( 'Manual', 'lifeboat-backup' ),
+			'ai-optimize' => __( 'Before Smart AI fixes', 'lifeboat-backup' ),
 			'schedule'    => __( 'Scheduled', 'lifeboat-backup' ),
 			'schedule-db' => __( 'Scheduled DB', 'lifeboat-backup' ),
 			'update'      => __( 'After update', 'lifeboat-backup' ),

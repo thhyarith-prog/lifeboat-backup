@@ -3,7 +3,7 @@ Tags: backup, google drive, onedrive, dropbox, encryption
 Requires at least: 6.0
 Tested up to: 7.1
 Requires PHP: 7.4
-Stable tag: 1.0.8
+Stable tag: 1.0.9
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -78,6 +78,10 @@ Yes, on purpose. It trades speed for keeping your site responsive. Use Rush for 
 * Interface fonts: Inter (The Inter Project Authors) and Noto Sans Khmer (Google), both under the SIL Open Font License 1.1. They are bundled in `assets/fonts`, so the admin screens never load fonts from another server.
 
 == Changelog ==
+
+= 1.0.9 =
+* New: "Optimize with AI" now fixes what is safe to fix, not just lists it. It backs up first with Lifeboat, makes the safe fixes, shows each change under "Fixed for you" with an Undo button, then the AI writes a plan for what is left.
+* New: Lifeboat takes a database backup before Smart AI Optimize changes anything. It appears in your backups as "Before Smart AI fixes".
 
 = 1.0.8 =
 * Improved: the "Optimize with AI" button has a new Prasat temple design that builds up while your plan is being written and shows a tick when it is ready.

@@ -2,7 +2,7 @@
 /**
  * Plugin Name:       Lifeboat Backup
  * Description:       Automatic backups to Google Drive, OneDrive, Dropbox, Box and MEGA. Daily, weekly or monthly schedules, automatic backup after updates, optional AES-256 encryption, and a background engine with Easy mode (gentle on your site) or Rush mode (as fast as possible).
- * Version:           1.0.8
+ * Version:           1.0.9
  * Requires at least: 6.0
  * Requires PHP:      7.4
  * Update URI:        https://github.com/thhyarith-prog/lifeboat-backup
@@ -17,7 +17,7 @@
 
 defined( 'ABSPATH' ) || exit;
 
-define( 'LIFEBOAT_VERSION', '1.0.8' );
+define( 'LIFEBOAT_VERSION', '1.0.9' );
 define( 'LIFEBOAT_FILE', __FILE__ );
 define( 'LIFEBOAT_DIR', plugin_dir_path( __FILE__ ) );
 define( 'LIFEBOAT_URL', plugin_dir_url( __FILE__ ) );
@@ -65,7 +65,7 @@ unset( $lifeboat_files, $lifeboat_file );
 if ( is_admin() || wp_doing_ajax() ) {
 	require_once LIFEBOAT_DIR . 'includes/class-lifeboat-admin.php';
 	require_once LIFEBOAT_DIR . 'includes/prasat-hub.php';
-	Prasat_Hub::register( 'lifeboat', array( 'assets' => LIFEBOAT_URL . 'assets/', 'health' => array( 'Lifeboat_Admin', 'health' ), 'dashboard' => array( 'Lifeboat_Admin', 'dashboard' ) ) );
+	Prasat_Hub::register( 'lifeboat', array( 'assets' => LIFEBOAT_URL . 'assets/', 'health' => array( 'Lifeboat_Admin', 'health' ), 'dashboard' => array( 'Lifeboat_Admin', 'dashboard' ), 'backup' => array( 'start' => array( 'Lifeboat_Admin', 'hub_backup_start' ), 'status' => array( 'Lifeboat_Admin', 'hub_backup_status' ) ) ) );
 }
 
 register_activation_hook( __FILE__, array( 'Lifeboat_Plugin', 'activate' ) );
